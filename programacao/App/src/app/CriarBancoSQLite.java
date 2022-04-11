@@ -25,7 +25,7 @@ public class CriarBancoSQLite {
                 + "("
                 + "id integer PRIMARY KEY,"
                 + "numero int NOT NULL,"
-                + "fatorial bigint"
+                + "fatorial BIGINT"
                 + ");";
         //executando o sql de criar tabelas
         boolean conectou = false;
@@ -36,7 +36,7 @@ public class CriarBancoSQLite {
             Statement stmt = this.conexaoSQLite.criarStatement();
             
             stmt.execute(sql);
-            System.out.println("Tabela numero Criada!!!");
+           // System.out.println("Tabela numero Criada!!!");
             
         }catch(SQLException e){
             

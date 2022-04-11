@@ -15,14 +15,14 @@ import java.util.logging.Logger;
 public class Fatorial {
     
     public static BigInteger fatorial(int numero) {
-        
+        int controle = 0;
         BigInteger resultado = BigInteger.ONE;
         for (int i = 1; i <= numero; i++) {
-            
+            controle++;
             resultado = resultado.multiply(BigInteger.valueOf(i));
             
-            System.out.println("Numero inserido " + i);
-            System.out.println("O fatorial de  " + i + " é = " + resultado);
+          // System.out.println("Numero = " + i);
+           //System.out.println("O fatorial de  " + i + " é = " + resultado);
             
             Numero n = new Numero();
             n.setId(i);
@@ -30,14 +30,6 @@ public class Fatorial {
             n.setFatorial(resultado);
             
             ConexaoSQLite conexaoSQLite = new ConexaoSQLite();
-            CriarBancoSQLite criarBancoSQLite = new CriarBancoSQLite(conexaoSQLite);
-            
-            try {
-                criarBancoSQLite.criarTabelaNumero();
-            } catch (SQLException ex) {
-                Logger.getLogger(Fatorial.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
             conexaoSQLite.conectar();
             
             String sqlInsert = "INSERT INTO tbl_numero("
@@ -56,13 +48,13 @@ public class Fatorial {
                 int resultad = preparedStatement.executeUpdate();
                 
                 if (resultad == 1) {
-                    System.out.println("Numero inserido!! ");
+                   // System.out.println("Numero inserido!! ");
                 } else {
-                    System.out.println("Numero nao inserido!! ");
+                   // System.out.println("Numero nao inserido!! ");
                 }
                 
             } catch (SQLException e) {
-                System.out.println("Numero nao inserido!! ");
+                //System.out.println("Numero nao inserido!! ");
 
             } finally {
                 if (preparedStatement != null) {
@@ -71,6 +63,9 @@ public class Fatorial {
                 }
                 
             }
-        } return resultado;
+            
+        } 
+         System.out.println("O fatorial de "+controle+" é = "+ resultado);
+         return resultado;
     }
 }

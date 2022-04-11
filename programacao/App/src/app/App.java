@@ -20,6 +20,9 @@ public class App {
         int num = input.nextInt();
 
         ConexaoSQLite conexaoSQLite = new ConexaoSQLite();
+        CriarBancoSQLite criarBancoSQLite = new CriarBancoSQLite(conexaoSQLite);
+        criarBancoSQLite.criarTabelaNumero();
+
         ResultSet resultSet = null;
         Statement statement = null;
 
