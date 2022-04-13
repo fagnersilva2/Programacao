@@ -8,9 +8,9 @@ import java.math.BigInteger;
  */
 public class Numero {
 
-    private int id;
+  private int id;
     private int numero;
-    private BigInteger fatorial;
+    private String fatorial;
 
     public int getId() {
         return id;
@@ -28,13 +28,14 @@ public class Numero {
         this.numero = numero;
     }
 
-    public BigInteger getFatorial() {
+    public String getFatorial() {
         return fatorial;
     }
 
-    public void setFatorial(BigInteger fatorial) {
+    public void setFatorial(String fatorial) {
         this.fatorial = fatorial;
     }
+
 
 
 }

@@ -18,6 +18,7 @@ public class App {
         Scanner input = new Scanner(System.in);
         System.out.println("Imforme o numero");
         int num = input.nextInt();
+        String tst = null;
 
         ConexaoSQLite conexaoSQLite = new ConexaoSQLite();
         CriarBancoSQLite criarBancoSQLite = new CriarBancoSQLite(conexaoSQLite);
@@ -29,7 +30,6 @@ public class App {
         conexaoSQLite.conectar();
 
         String query = "SELECT * FROM tbl_numero; ";
-
         statement = conexaoSQLite.criarStatement();
 
         try {
@@ -37,25 +37,31 @@ public class App {
             resultSet = statement.executeQuery(query);
             int teste = 0;
             int controle = 0;
+
             while (resultSet.next()) {
 
                 teste++;
                 if (resultSet.getInt("id") == num) {
                     System.out.println("id = " + resultSet.getInt("id"));
                     System.out.println("Numero = " + resultSet.getInt("numero"));
-                    System.out.println("Fatorial = " + resultSet.getObject("fatorial"));
+                    System.out.println("Fatorial = " + (resultSet.getString((("fatorial")))));
 
-                    controle++;
                 } else {
                 }
 
+                tst = new String(resultSet.getString((("fatorial"))));
             }
 
-            if ((teste < num) && (controle == 0)) {
-          
-              Fatorial fat = new Fatorial();
-              fat.fatorial(num);
-              
+            if ((teste == 0)) {
+                tst = "1";
+                teste = 0;
+                Fatorial fat = new Fatorial();
+                fat.fatorial(num, teste, tst);
+
+            } else if ((teste < num) && (controle == 0)) {
+                Fatorial fat = new Fatorial();
+                fat.fatorial(num, teste, tst);
+
             } else {
             }
         } catch (SQLException e) {

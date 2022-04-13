@@ -25,7 +25,7 @@ public class CriarBancoSQLite {
                 + "("
                 + "id integer PRIMARY KEY,"
                 + "numero int NOT NULL,"
-                + "fatorial BIGINT"
+                + "fatorial text"
                 + ");";
         //executando o sql de criar tabelas
         boolean conectou = false;

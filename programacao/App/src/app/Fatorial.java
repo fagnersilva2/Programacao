@@ -4,9 +4,7 @@ import Conexoes.ConexaoSQLite;
 import java.math.BigInteger;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
  *
@@ -14,24 +12,23 @@ import java.util.logging.Logger;
  */
 public class Fatorial {
     
-    public static BigInteger fatorial(int numero) {
-        int controle = 0;
+   public static BigInteger fatorial(int numero, int nn, String n3) {
+        int i;
+
         BigInteger resultado = BigInteger.ONE;
-        for (int i = 1; i <= numero; i++) {
-            controle++;
+        resultado = new BigInteger(n3);
+        for (i = nn +1; i <= numero; i++) {
+
             resultado = resultado.multiply(BigInteger.valueOf(i));
-            
-          // System.out.println("Numero = " + i);
-           //System.out.println("O fatorial de  " + i + " é = " + resultado);
-            
+
             Numero n = new Numero();
             n.setId(i);
             n.setNumero(i);
-            n.setFatorial(resultado);
-            
+            n.setFatorial(String.valueOf(resultado));
+
             ConexaoSQLite conexaoSQLite = new ConexaoSQLite();
             conexaoSQLite.conectar();
-            
+
             String sqlInsert = "INSERT INTO tbl_numero("
                     + "id,"
                     + "numero,"
@@ -39,33 +36,27 @@ public class Fatorial {
                     + ")VALUES(?,?,?)"
                     + ";";
             PreparedStatement preparedStatement = conexaoSQLite.criarPreparedStatement(sqlInsert);
-            
+
             try {
                 preparedStatement.setInt(1, n.getId());
                 preparedStatement.setInt(2, n.getNumero());
-                preparedStatement.setObject(3, n.getFatorial());
-                
+                preparedStatement.setString(3, n.getFatorial());
+
                 int resultad = preparedStatement.executeUpdate();
-                
-                if (resultad == 1) {
-                   // System.out.println("Numero inserido!! ");
-                } else {
-                   // System.out.println("Numero nao inserido!! ");
-                }
-                
+
             } catch (SQLException e) {
-                //System.out.println("Numero nao inserido!! ");
 
             } finally {
                 if (preparedStatement != null) {
-                    
+
                     conexaoSQLite.desconectar();
                 }
-                
+
             }
-            
-        } 
-         System.out.println("O fatorial de "+controle+" é = "+ resultado);
-         return resultado;
+
+        }
+        i = i - 1;
+        System.out.println("O fatorial de  " +i + " é = " + resultado);
+        return resultado;
     }
 }
