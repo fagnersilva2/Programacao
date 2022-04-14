@@ -1,18 +1,22 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Conexoes;
-import java.sql.Statement;
-import java.sql.PreparedStatement;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
  * @author Fagner Silva
  */
 public class ConexaoSQLite {
-
-    private Connection conexao;
+     private Connection conexao;
 
     public boolean conectar() {
 
@@ -64,5 +68,5 @@ public class ConexaoSQLite {
     public Connection getConexao() {
         return this.conexao;
     }
- 
+    
 }
